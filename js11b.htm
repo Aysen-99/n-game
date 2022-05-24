@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            body {text-align: center ; margin: 50px 0 0 0}
+            #x {display: none }
+        </style>
+    </head>
+    <body>
+        <h1 id="msg">1-100 arasi reqem tutdum. Onu tap</h1>
+        <p><input id="x" type="text" /></p>
+        <button id="btn" onclick="start()">Oyuna basla</button>
+        <button style="display: none;" id="restart" onclick="restart()">Restart</button>
+
+        <script>
+            const x = document.getElementById('x')
+            const btn = document.getElementById('btn')
+            const msg = document.getElementById('msg')
+            const restartBtn = document.getElementById('restart')
+            let n = rand(1,5) 
+            let count = 0
+
+            function start() {
+                x.style.display = "inline"
+                btn.innerHTML = "Ok"
+                if (x.value > 0 && x.value <= 100) yoxla()
+            }
+
+            function yoxla() {
+                count ++
+                let message = (x.value > n ) ? `Cehd:${count} Coxdur` :
+                              (x.value < n) ? `Cehd:${count} Azdir` : `${count} Cehdden Tapdin !!!`
+
+                msg.innerHTML = message 
+                if (x.value == n) {
+                    x.style.display = "none"
+                   btn.style.display = 'none'
+                   restartBtn.style.display = 'inline-block'
+                }     
+            }
+
+            function restart() {
+                n = rand(1,5)
+                x.value= ''
+                msg.innerHTML =''
+                count = 0
+               btn.style.display = 'inline-block'
+               btn.innerHTML = 'Oyuna bashla'
+               restartBtn.style.display = 'none'
+               msg.innerHTML = '1-100 arasi reqem tutdum. Onu tap'               
+            }
+            
+            function rand(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) ) + min;
+            }
+        </script>
+    </body>
+</html>
